@@ -14,7 +14,7 @@ conf_bk() { /bin/cp -f "$1" "$1.old-$SYS_DT" 2>/dev/null; }
 
 # root only
 if [ "$(id -u)" != 0 ]; then
-    exiterr "Script must be run as root. Try 'sudo sh $0'"
+    exiterr "Script must be run as root. Try 'sudo -H sh $0'"
 fi
 
 # check os is ubuntu or debian
@@ -104,15 +104,15 @@ curl -XPOST 'http://localhost:8086/query' --data-urlencode 'q=show databases'
 # ref: https://grafana.com/docs/installation/debian/
 echo "### Installing Grafana ... ###"
 
-# This may fail, remove it since it seems not neccesary.
-# apt-get install -y software-properties-common
-# add-apt-repository "deb https://packages.grafana.com/oss/deb stable main" 
+apt-get install -y software-properties-common
+add-apt-repository "deb https://packages.grafana.com/oss/deb stable main" 
 
 wget -q -O - https://packages.grafana.com/gpg.key | apt-key add -
 apt-get update
 apt-get -yq install grafana
 systemctl start grafana-server
 # enable service start on bootup
+systemctl daemon-reload
 systemctl enable grafana-server
 
 ### Modify iptables to allow remote access to these services. ###
