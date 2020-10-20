@@ -8,3 +8,6 @@ wget https://raw.githubusercontent.com/peterjpxie/glances_influxdb_grafana/maste
 * Ubuntu 16.04
 
 It should work on Debian as well, but not tested.
+
+## Medium Post
+Check more detail on the Medium post(https://medium.com/@peter.jp.xie/setup-glances-influxdb-grafana-on-ubuntu-829c630bb441).
